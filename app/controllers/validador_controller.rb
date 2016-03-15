@@ -11,10 +11,10 @@ class ValidadorController < ApplicationController
 	    if @hash!='' && @mensaje != ''
 	    	begin 
 			    @retorner = false
-		    	if @hash == @encoded_string
+		    	if @hash.downcase  == @encoded_string
 		    		@retorner =true
 		    	end
-		    	@response = {:mensaje => @mensaje, :valido => @retorner, :status => 200}	
+		    	@response = {:mensaje => @encoded_string, :valido => @retorner, :status => 200}	
 		    	render json: @response.to_json
 	    	rescue Exception => e
 		    	render json: {
