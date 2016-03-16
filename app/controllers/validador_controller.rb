@@ -1,6 +1,7 @@
 require 'base64'
 require 'openssl'
 class ValidadorController < ApplicationController
+
 	def validar
 	    @mensaje = params[:mensaje].to_s
 	    @hash = params[:hash].to_s
@@ -14,7 +15,7 @@ class ValidadorController < ApplicationController
 		    	if @hash.downcase  == @encoded_string
 		    		@retorner =true
 		    	end
-		    	@response = {:mensaje => @encoded_string, :valido => @retorner, :status => 200}	
+		    	@response = {:mensaje => @mensaje, :valido => @retorner, :status => 200}	
 		    	render json: @response.to_json
 	    	rescue Exception => e
 		    	render json: {
